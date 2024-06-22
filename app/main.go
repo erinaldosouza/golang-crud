@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
+	"golang-crud/app/src/controller/routes"
 	"log"
 	"os"
 
+	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
 
@@ -30,4 +32,11 @@ func main() {
 		log.Fatal("APP_NAME environment variable not set")
 	}
 	fmt.Println(appName)
+
+	router := gin.Default()
+	routes.InitRoutes(&router.RouterGroup)
+
+	if err:= router.Run(":8080"); err != nil {
+		log.Fatal(err)
+	}
 }
