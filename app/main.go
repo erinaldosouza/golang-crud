@@ -27,7 +27,7 @@ func getEnv(key string) string {
 
 func main() {
 	loadEnv()
-	appName := getEnv("APP_NAME")
+	appName := getEnv(APP_NAME)
 	if appName == "" {
 		log.Fatal("APP_NAME environment variable not set")
 	}
@@ -36,7 +36,7 @@ func main() {
 	router := gin.Default()
 	routes.InitRoutes(&router.RouterGroup)
 
-	if err:= router.Run(":8080"); err != nil {
+	if err := router.Run(":8080"); err != nil {
 		log.Fatal(err)
 	}
 }
