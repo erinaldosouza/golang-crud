@@ -31,8 +31,8 @@ func NewNotFoundError(message string, cause []Causes) *AppError {
 	return NewAppError(message, "Resource not found", http.StatusNotFound, cause)
 }
 
-func NewBadRequestError(message string, cause []Causes) *AppError {
-	return NewAppError(message, "Bad Request", http.StatusBadRequest, cause)
+func NewBadRequestError(message string, causes []Causes) *AppError {
+	return NewAppError(message, "Bad Request", http.StatusBadRequest, causes)
 }
 
 func NewValidationError(message string, cause []Causes) *AppError {
