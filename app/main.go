@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"golang-crud/app/src/configuration/logger"
 	"golang-crud/app/src/controller/routes"
 	"log"
 	"os"
@@ -26,6 +27,7 @@ func getEnv(key string) string {
 }
 
 func main() {
+	logger.Info("About to start Application")
 	loadEnv()
 	appName := getEnv(APP_NAME)
 	if appName == "" {
