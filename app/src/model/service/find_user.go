@@ -1,4 +1,4 @@
-package model
+package service
 
 import (
 	"golang-crud/app/src/configuration/app_errors"

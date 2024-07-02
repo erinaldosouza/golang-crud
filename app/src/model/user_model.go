@@ -3,8 +3,14 @@ package model
 import (
 	"crypto/md5"
 	"encoding/hex"
-	"golang-crud/app/src/configuration/app_errors"
 )
+
+type UserDomainInterface interface {
+	GetEmail() string
+	GetPwd() string
+	GetName() string
+	GetAge() int8
+}
 
 func NewUserDomain(
 	email, pwd, name string,
@@ -15,23 +21,32 @@ func NewUserDomain(
 	}
 }
 
+func (ud *userDomain) GetEmail() string {
+	return ud.email
+}
+
+func (ud *userDomain) GetPwd() string {
+	return ud.pwd
+}
+
+func (ud *userDomain) GetName() string {
+	return ud.name
+}
+
+func (ud *userDomain) GetAge() int8 {
+	return ud.age
+}
+
 type userDomain struct {
-	Email string
-	Pwd   string
-	Name  string
-	Age   int8
+	email string
+	pwd   string
+	name  string
+	age   int8
 }
 
-type IUserDomainer interface {
-	CreateUser() *app_errors.AppError
-	UpdateUser(string) *app_errors.AppError
-	FindUser(string) (*userDomain, *app_errors.AppError)
-	DeleteUser(string) *app_errors.AppError
-}
-
-func (ud *userDomain) EncryptPassword() {
+func (ud *userDomain) encryptPassword() {
 	hash := md5.New()
 	defer hash.Reset()
-	hash.Write([]byte(ud.Pwd))
-	ud.Pwd = hex.EncodeToString(hash.Sum(nil))
+	hash.Write([]byte(ud.pwd))
+	ud.pwd = hex.EncodeToString(hash.Sum(nil))
 }
